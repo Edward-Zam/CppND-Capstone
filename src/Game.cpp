@@ -116,7 +116,7 @@ void Game::DrawTetromino(const TetrominoType tetrominoType, const int posX, cons
 {
     Color color = GetTetrominoTypeColor(tetrominoType);
     int pixelX = _playfield->GetPlayfieldPositionX(posX);
-    int pixelY = _playfield->GetPlayfieldPositionY(posY);
+    int pixelY = _playfield->GetPlayfieldPositionY(posY) - 1;
 
     for (int i = 0; i < TETROMINO_MAX_SIZE; i++)
     {

@@ -91,7 +91,7 @@ int main(int argc, char * args[])
                 playfield.DeleteCompletedLines();
                 game.CreateTetromino();
             }
-            frameStart = SDL_GetTicks():
+            frameStart = SDL_GetTicks();
         }
 
     }

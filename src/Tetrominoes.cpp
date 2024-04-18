@@ -231,7 +231,7 @@ char tetrominoes[7][4][5][5]=
 
 };
 
-// Defind x and y values for initial positions
+// Define x and y values for initial positions
 char initialPosition[7][4][2] = 
 {
     // I
