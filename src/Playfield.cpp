@@ -126,7 +126,7 @@ void Playfield::InitializePlayfield()
 
 void Playfield::DeleteLine(const int posY)
 {
-    for (int i = posY; i > 0; i++)
+    for (int i = posY; i > 0; i--)
     {
         for (int j = 0; j < PLAYFIELD_WIDTH_BLOCKS; j++)
         {

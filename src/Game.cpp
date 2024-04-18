@@ -27,6 +27,7 @@ void Game::DrawAll()
 void Game::CreateTetromino()
 {
     CurrentTetromino = _nextTetromino;
+    CurrentTetrominoRotation = _nextTetrominoRotation;
     CurrentTetrominoPosX = _tetrominoes->GetTetrominoInitialPositionX(CurrentTetromino, CurrentTetrominoRotation) + (PLAYFIELD_WIDTH_BLOCKS / 2) -1;
     CurrentTetrominoPosY = _tetrominoes->GetTetrominoInitialPositionY(CurrentTetromino, CurrentTetrominoRotation);
 
@@ -104,7 +105,7 @@ int Game::GetTetrominoMaxPosY()
 {
     // Find the lowest position the tetromino can go
     int y = 0;
-    while ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY,0) )
+    while ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY + y, CurrentTetrominoRotation) )
     {
         y++;
     }
@@ -139,7 +140,7 @@ void Game::DrawFuturePlacement()
     int distanceToBottom = GetTetrominoMaxPosY();
     Color color = GRAY;
     int pixelX = _playfield->GetPlayfieldPositionX(CurrentTetrominoPosX);
-    int pixelY = _playfield->GetPlayfieldPositionX(CurrentTetrominoPosY + distanceToBottom);
+    int pixelY = _playfield->GetPlayfieldPositionY(CurrentTetrominoPosY + distanceToBottom);
 
     for ( int i = 0; i < TETROMINO_MAX_SIZE; i++ )
     {

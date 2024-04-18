@@ -33,7 +33,7 @@ int main(int argc, char * args[])
 
         // Handle player movement:
         // Left arrow = left, Right arrow = Right, Down arrow = down, Up arrow = drop
-        // Space = rotate, Q/ESC = quit
+        // Space = rotate, ESC = quit
         int keyPressed = renderer.GetKeyPress();
         switch (keyPressed)
         {
