@@ -111,8 +111,8 @@ void Renderer::SetRenderColor(const Color color)
         case RED:
             SDL_SetRenderDrawColor(_renderer, 0xFF, 0x00, 0x00, 0xFF);
             break;
-        case AMBER:
-            SDL_SetRenderDrawColor(_renderer, 0xFF, 0xBF, 0xF0, 0xFF);
+        case GRAY:
+            SDL_SetRenderDrawColor(_renderer, 0x7F, 0x7F, 0x7F, 0xFF);
             break;
     }
 }

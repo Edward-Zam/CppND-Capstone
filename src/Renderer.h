@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 
 // I, J, L, O, S, T, Z, EMPTY
-enum Color {CYAN, BLUE, ORANGE, YELLOW, GREEN, PURPLE, RED, AMBER};
+enum Color {CYAN, BLUE, ORANGE, YELLOW, GREEN, PURPLE, RED, GRAY};
 
 class Renderer
 {
