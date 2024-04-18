@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 
-// I, J, L, O, S, T, Z
-enum Color {CYAN, BLUE, ORANGE, YELLOW, GREEN, MAGENTA, AMBER};
+// I, J, L, O, S, T, Z, EMPTY
+enum Color {CYAN, BLUE, ORANGE, YELLOW, GREEN, PURPLE, RED, AMBER};
 
 class Renderer
 {
@@ -17,7 +17,7 @@ public:
     void UpdateScreen();
     void DrawRectangle(const int x, const int y, const int width, const int height, const Color color);
     void DrawRectangleOutline(const int x, const int y, const int width, const int height, const Color color);
-    void GetKeyPress();
+    int GetKeyPress();
     bool HasPlayerQuit();
 
 private:
