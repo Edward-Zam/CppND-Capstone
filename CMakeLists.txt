@@ -15,6 +15,6 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} src)
 
 #add_executable(SnakeGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/snake.cpp)
-add_executable(Tetris src/Tetrominoes.cpp src/Playfield.cpp src/Renderer.cpp src/Game.cpp)
+add_executable(Tetris src/main.cpp src/Tetrominoes.cpp src/Playfield.cpp src/Renderer.cpp src/Game.cpp)
 string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 target_link_libraries(Tetris ${SDL2_LIBRARIES})
