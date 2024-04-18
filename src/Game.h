@@ -8,10 +8,10 @@
 class Game
 {
 public:
-    Game(Playfield *playfield, Tetrominoes *tetrominoes, Renderer *rendererService);
+    Game(Playfield *playfield, Tetrominoes *tetrominoes, Renderer *renderer);
     ~Game();
 
-    TetrominoType CurrentPiece;
+    TetrominoType CurrentTetromino;
     int CurrentTetrominoPosX;
     int CurrentTetrominoPosY;
     int CurrentTetrominoRotation;
@@ -24,7 +24,7 @@ public:
 private:
     Playfield *_playfield;
     Tetrominoes *_tetrominoes;
-    Renderer *_rendererService;
+    Renderer *_renderer;
 
     TetrominoType _nextTetromino;
     int _nextTetrominoPosX;
@@ -35,8 +35,8 @@ private:
     void InitializeGame();
     Color GetTetrominoTypeColor(const TetrominoType tetrominoType);
     int GetTetrominoMaxPosY();
-    void DrawPiece(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation);
-    void DrawFutureTetromino();
+    void DrawTetromino(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation);
+    void DrawFuturePlacement();
     void DrawPlayfield();
     void DrawStoredTetrominoes();
 

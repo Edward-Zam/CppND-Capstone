@@ -7,7 +7,6 @@ const int TETROMINO_MAX_SIZE = 5;
 
 enum TetrominoType
 {
-    //SQUARE, I, L, L_MIRRORED, Z, Z_MIRRORED, T, UNDEFINED
     I, J, L, O, S, T, Z, EMPTY
 };
 
