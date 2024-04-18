@@ -1,7 +1,7 @@
 #ifndef PLAYFIELD_H
 #define PLAYFIELD_H
 
-#include "Tetrominoes.hpp"
+#include "Tetrominoes.h"
 
 // Define some constants of the playfield
 const int SCREEN_WIDTH = 640;
