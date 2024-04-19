@@ -1,7 +1,7 @@
 # CppND-Capstone: Tetris Game
-This is the repository for [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213) Capstone project. It is based off of the example [Capsone Project](https://github.com/udacity/CppND-Capstone-Snake-Game)
+This is the repository for [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213) Capstone project. It is based off of the example [Capstone Project](https://github.com/udacity/CppND-Capstone-Snake-Game)
 
-TODO: INSERT GIF HERE
+<img src="Tetris_2.gif"/>
 
 For this project, I have built my own C++ application that implements the Tetris game, following the principles I have learned throughout this Nanodegree program. 
 
