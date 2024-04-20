@@ -38,8 +38,21 @@ void Game::CreateTetromino()
 void Game::RotateTetromino()
 {
     int nextRotation = (CurrentTetrominoRotation + 1) % 4;
+
+    // Rotate normally if possible    
     if ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY, nextRotation) )
     {
+        CurrentTetrominoRotation = nextRotation;
+    }
+    // Simple wall kick, check if we can move tetronimo +/- 1 for a succesful rotation. If not then don't rotate
+    else if ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX - 1, CurrentTetrominoPosY, nextRotation) )
+    {
+        CurrentTetrominoPosX--;
+        CurrentTetrominoRotation = nextRotation;
+    }
+    else if ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX + 1, CurrentTetrominoPosY, nextRotation) )
+    {
+        CurrentTetrominoPosX++;
         CurrentTetrominoRotation = nextRotation;
     }
 }
