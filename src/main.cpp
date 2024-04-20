@@ -32,8 +32,8 @@ int main(int argc, char * args[])
         renderer.UpdateScreen();
 
         // Handle player movement:
-        // Left arrow = left, Right arrow = Right, Down arrow = down, Up arrow = drop
-        // Space = rotate, ESC = quit
+        // Left arrow = left, Right arrow = Right, Down arrow = down, Up arrow = Rotate
+        // Space = Drop, ESC = quit
         int keyPressed = renderer.GetKeyPress();
         switch (keyPressed)
         {
@@ -59,15 +59,15 @@ int main(int argc, char * args[])
                 break;
 
             case SDLK_UP:
+                game.RotateTetromino();
+                break;
+
+            case SDLK_SPACE:
                 if (playfield.IsGameOver())
                 {
                     break;
                 }
                 game.DropTetromino();
-                break;
-
-            case SDLK_SPACE:
-                game.RotateTetromino();
                 break;
 
             case SDLK_ESCAPE:

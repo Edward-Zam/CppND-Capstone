@@ -35,17 +35,12 @@ cmake .. && make
 ## Controls
 Left Arrow: Move Tetromino left
 
-
 Right Arrow: Move Tetromino Right
-
 
 Down Arrow: Move Tetromino down one space
 
+Up Arrow: Rotate Tetromino
 
-Up Arrow: Drop Tetromino
-
-
-Space: Rotate Tetromino
-
+Space: Drop Tetromino
 
 ESC: Quit the program
