@@ -122,8 +122,6 @@ void Game::DrawTetromino(const TetrominoType tetrominoType, const int posX, cons
     Color color = GetTetrominoTypeColor(tetrominoType);
     int pixelX = _playfield->GetPlayfieldPositionX(posX);
     int pixelY = _playfield->GetPlayfieldPositionY(posY) - 1;
-    // Get position for hidden row
-    int minY = _playfield->GetPlayfieldPositionY(-3);
 
     for (int i = 0; i < TETROMINO_MAX_SIZE; i++)
     {
@@ -131,15 +129,11 @@ void Game::DrawTetromino(const TetrominoType tetrominoType, const int posX, cons
         {
             if (_tetrominoes->GetTetrominoType(tetrominoType, j, i, rotation) != 0)
             {
-                // Don't render 2 hidden rows
-                if (pixelY >  minY )
-                {
                     _renderer->DrawRectangle(pixelX + (i*BLOCK_SIZE), 
                                         pixelY + (j*BLOCK_SIZE), 
                                         BLOCK_SIZE -1,
                                         BLOCK_SIZE - 1, 
                                         color);
-                }
             }
         }
     }
