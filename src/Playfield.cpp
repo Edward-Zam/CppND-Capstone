@@ -1,9 +1,8 @@
 #include "Playfield.h"
 
-Playfield::Playfield(Tetrominoes *tetrominoes)
+Playfield::Playfield(Tetrominoes *tetrominoes) :
+_tetrominoes(tetrominoes)
 {
-    _tetrominoes = tetrominoes;
-
     InitializePlayfield();
 }
 

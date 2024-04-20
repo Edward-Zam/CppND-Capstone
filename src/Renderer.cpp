@@ -3,10 +3,10 @@
 
 using namespace std;
 
-Renderer::Renderer()
+Renderer::Renderer() :
+_renderer(nullptr),
+_window(nullptr)
 {
-    _renderer = nullptr;
-    _window = nullptr;
     InitializeGraphics();
 }
 

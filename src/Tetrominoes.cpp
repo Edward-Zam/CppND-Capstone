@@ -5,6 +5,7 @@
 char tetrominoes[7][4][5][5]=
 {
     // Define 7 tetrominoes with four rotations
+    // We check for > 0 values, the 2 is for easier visibility into the center (for rotation) of the tetromino
     // I
     {
         {

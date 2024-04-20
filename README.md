@@ -9,6 +9,26 @@ This implementation follows rules set by the [Super Rotation System](https://tet
 
 This project uses the SDL library and a modified CMake file. The controler aspect is embedded into main.cpp but I have tried to stick to the game, renderer, controller model otherwise.
 
+## Rubric Points Addressed
+* README with instructions and rubric points addressed
+* The project compiles and runs without errors
+* Loops, Functions, I/O
+  * The Project demonstrates an understanding of C++ functions and control structures
+    * Project code is clearly organized into functions
+    * A variety of control structures are used (if/else, switch, etc.) 
+  * The project accepts and processes user input
+  * The project uses data structures and immutable variables
+    * Arrays and constant variables used
+* Object Oriented Programming
+  * One or more classes are added to the project
+  * Classes abstract implementation details from their interfaces
+  * Class constructors utilize member initialization lists
+* Memory Management
+  * The project makes use of references in function declarations
+  * The project uses destructors appropriately
+  * the project uses scope / RAII when appropriate
+
+
 ## Depenencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)

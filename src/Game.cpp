@@ -2,12 +2,11 @@
 #include <time.h>
 #include "Game.h"
 
-Game::Game(Playfield * playfield, Tetrominoes * tetrominoes, Renderer * renderer)
+Game::Game(Playfield * playfield, Tetrominoes * tetrominoes, Renderer * renderer) :
+_playfield(playfield),
+_tetrominoes(tetrominoes),
+_renderer(renderer)
 {
-    _playfield = playfield;
-    _tetrominoes = tetrominoes;
-    _renderer = renderer;
-
     InitializeGame();
 }
 
