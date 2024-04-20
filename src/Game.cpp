@@ -37,19 +37,10 @@ void Game::CreateTetromino()
 
 void Game::RotateTetromino()
 {
-    if (CurrentTetrominoRotation < 3)
+    int nextRotation = (CurrentTetrominoRotation + 1) % 4;
+    if ( _playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY, nextRotation) )
     {
-        if (_playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY, CurrentTetrominoRotation+1));
-        {
-            CurrentTetrominoRotation++;
-        }
-    }
-    else
-    {
-        if (_playfield->IsLegalMove(CurrentTetromino, CurrentTetrominoPosX, CurrentTetrominoPosY, 0))
-        {
-            CurrentTetrominoRotation = 0;
-        }
+        CurrentTetrominoRotation = nextRotation;
     }
 }
 
