@@ -232,63 +232,28 @@ char tetrominoes[7][4][5][5]=
 };
 
 // Define x and y values for initial positions
-char initialPosition[7][4][2] = 
+char initialPosition[7][2] = 
 {
     // I
-    {
-        {-1, -2},
-        {-2, -1},
-        { 0, -2},
-        {-2,  0}
-    },
+    {-1, -1},
 
     // J
-    {
-        {-1, -1},
-        {-1, -1},
-        {-2, -1},
-        {-1, -2}
-    },
+    {-1, -1},
 
     // L
-    {
-        {-2, -1},
-        {-1, -2},
-        {-1, -1},
-        {-1, -1}
-    },
+    {-2, -1},
 
     // O
-    {
-        {-2, -2},
-        {-2, -2},
-        {-2, -2},
-        {-2, -2}
-    },
+    {-2, -1},
 
     // S
-    {
-        {-2, -1},
-        {-1, -2},
-        { 0, -2},
-        {-2,  0}
-    },
+    {-2, -1},
 
     // T
-    {
-        {-2, -1},
-        {-1, -2},
-        {-1, -1},
-        {-1, -1}
-    },
+    {-2, -1},
 
     // Z
-    {
-        {-2, -1},
-        {-1, -2},
-        {-1, -1},
-        {-1, -1}
-    }
+    {-2, -1}
 };
 
 Tetrominoes::Tetrominoes()
@@ -308,10 +273,10 @@ int Tetrominoes::GetTetrominoType(const TetrominoType tetrominoType, const int i
 
 int Tetrominoes::GetTetrominoInitialPositionX(const TetrominoType tetrominoType, const int rotation)
 {
-    return initialPosition[(int)tetrominoType][rotation][0];
+    return initialPosition[(int)tetrominoType][0];
 }
 
 int Tetrominoes::GetTetrominoInitialPositionY(const TetrominoType tetrominoType, const int rotation)
 {
-    return initialPosition[(int)tetrominoType][1][rotation];
+    return initialPosition[(int)tetrominoType][1];
 }
