@@ -18,7 +18,7 @@ int Playfield::GetPlayfieldPositionX(const int posX)
 
 int Playfield::GetPlayfieldPositionY(const int posY)
 {
-    return (posY * BLOCK_SIZE) + SCREEN_HEIGHT - (PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE) + 1;
+    return (posY * BLOCK_SIZE) + SCREEN_HEIGHT - (PLAYFIELD_ROWS * BLOCK_SIZE) + 1;
 }
 
 TetrominoType Playfield::GetPlayfieldState(const int posX, const int posY)
@@ -42,7 +42,7 @@ bool Playfield::IsLegalMove(const TetrominoType tetrominoType, const int posX, c
             if (_tetrominoes->GetTetrominoType(tetrominoType, j, i, rotation) != 0)
             {
                 // Check against playfield limits
-                if (playfieldPosX < 0 || playfieldPosX > PLAYFIELD_WIDTH_BLOCKS - 1 || playfieldPosY > PLAYFIELD_HEIGHT_BLOCKS -1 )
+                if (playfieldPosX < 0 || playfieldPosX > PLAYFIELD_COLUMNS - 1 || playfieldPosY > PLAYFIELD_ROWS -1 )
                 {
                     return false;
                 }
@@ -84,15 +84,15 @@ void Playfield::StoreTetromino(const TetrominoType tetrominoType, const int posX
 
 void Playfield::DeleteCompletedLines()
 {
-    for (int i = 0; i < PLAYFIELD_HEIGHT_BLOCKS; i++)
+    for (int i = 0; i < PLAYFIELD_ROWS; i++)
     {
-        for (int j = 0; j < PLAYFIELD_WIDTH_BLOCKS; j++)
+        for (int j = 0; j < PLAYFIELD_COLUMNS; j++)
         {
             if (_playfield[j][i] == EMPTY)
             {
                 break;
             }
-            else if (j == PLAYFIELD_WIDTH_BLOCKS - 1)
+            else if (j == PLAYFIELD_COLUMNS - 1)
             {
                 DeleteLine(i);
             }
@@ -102,7 +102,7 @@ void Playfield::DeleteCompletedLines()
 
 bool Playfield::IsGameOver()
 {
-    for (int i = 0; i < PLAYFIELD_WIDTH_BLOCKS; i++)
+    for (int i = 0; i < PLAYFIELD_COLUMNS; i++)
     {
         if(_playfield[i][0] != EMPTY)
         {
@@ -115,9 +115,9 @@ bool Playfield::IsGameOver()
 
 void Playfield::InitializePlayfield()
 {
-    for (int i = 0; i < PLAYFIELD_WIDTH_BLOCKS; i++)
+    for (int i = 0; i < PLAYFIELD_COLUMNS; i++)
     {
-        for (int j = 0; j < PLAYFIELD_HEIGHT_BLOCKS; j++)
+        for (int j = 0; j < PLAYFIELD_ROWS; j++)
         {
             _playfield[i][j] = EMPTY;
         }
@@ -128,7 +128,7 @@ void Playfield::DeleteLine(const int posY)
 {
     for (int i = posY; i > 0; i--)
     {
-        for (int j = 0; j < PLAYFIELD_WIDTH_BLOCKS; j++)
+        for (int j = 0; j < PLAYFIELD_COLUMNS; j++)
         {
             _playfield[j][i] = _playfield[j][i-1];
         }

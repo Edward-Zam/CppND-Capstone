@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #include "Game.h"
 
 Game::Game(Playfield * playfield, Tetrominoes * tetrominoes, Renderer * renderer)
@@ -28,7 +29,7 @@ void Game::CreateTetromino()
 {
     CurrentTetromino = _nextTetromino;
     CurrentTetrominoRotation = _nextTetrominoRotation;
-    CurrentTetrominoPosX = _tetrominoes->GetTetrominoInitialPositionX(CurrentTetromino, CurrentTetrominoRotation) + (PLAYFIELD_WIDTH_BLOCKS / 2) -1;
+    CurrentTetrominoPosX = _tetrominoes->GetTetrominoInitialPositionX(CurrentTetromino, CurrentTetrominoRotation) + (PLAYFIELD_COLUMNS / 2) -1;
     CurrentTetrominoPosY = _tetrominoes->GetTetrominoInitialPositionY(CurrentTetromino, CurrentTetrominoRotation);
 
     _nextTetromino = (TetrominoType)GetRandomInt(I, Z);
@@ -70,8 +71,11 @@ int Game::GetRandomInt(const int min, const int max)
 
 void Game::InitializeGame()
 {
+    // Random-like numbers are sufficient here, we'll generate the seed at runtime
+    srand(time(NULL));
+
     _nextTetromino = (TetrominoType)GetRandomInt(I, Z);
-    _nextTetrominoPosX = PLAYFIELD_WIDTH_BLOCKS + 5;
+    _nextTetrominoPosX = PLAYFIELD_COLUMNS + 5;
     _nextTetrominoPosY = 5;
     _nextTetrominoRotation = 0; // All tetrominoes spawn horizontally per the SRS (Tetris Guideline)
 
@@ -118,6 +122,8 @@ void Game::DrawTetromino(const TetrominoType tetrominoType, const int posX, cons
     Color color = GetTetrominoTypeColor(tetrominoType);
     int pixelX = _playfield->GetPlayfieldPositionX(posX);
     int pixelY = _playfield->GetPlayfieldPositionY(posY) - 1;
+    // Get position for hidden row
+    int minY = _playfield->GetPlayfieldPositionY(-3);
 
     for (int i = 0; i < TETROMINO_MAX_SIZE; i++)
     {
@@ -125,11 +131,15 @@ void Game::DrawTetromino(const TetrominoType tetrominoType, const int posX, cons
         {
             if (_tetrominoes->GetTetrominoType(tetrominoType, j, i, rotation) != 0)
             {
-                _renderer->DrawRectangle(pixelX + (i*BLOCK_SIZE), 
+                // Don't render 2 hidden rows
+                if (pixelY >  minY )
+                {
+                    _renderer->DrawRectangle(pixelX + (i*BLOCK_SIZE), 
                                         pixelY + (j*BLOCK_SIZE), 
                                         BLOCK_SIZE -1,
                                         BLOCK_SIZE - 1, 
                                         color);
+                }
             }
         }
     }
@@ -162,15 +172,15 @@ void Game::DrawFuturePlacement()
 void Game::DrawPlayfield()
 {
     _renderer->DrawRectangle(PLAYFIELD_SEPERATOR_MARGIN,
-                            SCREEN_HEIGHT - (PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE),
+                            SCREEN_HEIGHT - (PLAYFIELD_ROWS * BLOCK_SIZE),
                             PLAYFIELD_SEPERATOR_THICKNESS,
-                            PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE,
+                            PLAYFIELD_ROWS * BLOCK_SIZE,
                             GRAY);
 
     _renderer->DrawRectangle(SCREEN_WIDTH - PLAYFIELD_SEPERATOR_MARGIN - PLAYFIELD_SEPERATOR_THICKNESS,
-                            SCREEN_HEIGHT - (PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE),
+                            SCREEN_HEIGHT - (PLAYFIELD_ROWS * BLOCK_SIZE),
                             PLAYFIELD_SEPERATOR_THICKNESS,
-                            PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE,
+                            PLAYFIELD_ROWS * BLOCK_SIZE,
                             GRAY);
 }
 
@@ -179,16 +189,16 @@ void Game::DrawStoredTetrominoes()
     TetrominoType  playfieldState;
     Color color;
 
-    for ( int i = 0; i < PLAYFIELD_WIDTH_BLOCKS; i++ )
+    for ( int i = 0; i < PLAYFIELD_COLUMNS; i++ )
     {
-        for ( int j =0; j<  PLAYFIELD_HEIGHT_BLOCKS; j++ )
+        for ( int j =0; j<  PLAYFIELD_ROWS; j++ )
         {
             playfieldState = _playfield->GetPlayfieldState(i, j);
             if ( playfieldState != EMPTY )
             {
                 color = GetTetrominoTypeColor(playfieldState);
                 _renderer->DrawRectangle(PLAYFIELD_SEPERATOR_MARGIN + PLAYFIELD_SEPERATOR_THICKNESS + (i * BLOCK_SIZE),
-                                        SCREEN_HEIGHT - (PLAYFIELD_HEIGHT_BLOCKS * BLOCK_SIZE) + (j * BLOCK_SIZE),
+                                        SCREEN_HEIGHT - (PLAYFIELD_ROWS * BLOCK_SIZE) + (j * BLOCK_SIZE),
                                         BLOCK_SIZE - 1,
                                         BLOCK_SIZE - 1,
                                         color);
