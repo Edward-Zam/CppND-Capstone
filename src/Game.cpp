@@ -1,3 +1,7 @@
+#include <chrono>
+#include <future>
+#include <random>
+#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include "Game.h"
@@ -65,6 +69,24 @@ void Game::DropTetromino()
     // We've dropped the tetromino down instantly, perform checks and create a new one
     _playfield->DeleteCompletedLines();
     CreateTetromino();
+}
+
+void Game::PauseGame()
+{
+    // Toggle the game state
+    this->_isPaused = !this->_isPaused;
+    // Continue if paused
+    this->Resume();
+}
+
+void Game::EndGame()
+{
+    std::thread resume_timer(&Game::WaitTime, this);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    resume_timer.detach();
+    std::unique_lock<std::mutex> lock(_pauseMutex);
+
+    std::cout << "Game Over!" << std::endl;
 }
 
 int Game::GetRandomInt(const int min, const int max)
@@ -202,4 +224,28 @@ void Game::DrawStoredTetrominoes()
             }
         }
     }
+}
+
+void Game::Resume()
+{
+    if (!this->_isPaused)
+    {
+        return;
+    }
+
+    std::thread resume_timer(&Game::WaitTime, this);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    resume_timer.detach();
+    std::unique_lock<std::mutex> lock(_pauseMutex);
+
+}
+
+void Game::WaitTime()
+{
+    std::cout << "Waiting for requesting action after 1s" << std::endl;
+    std::unique_lock<std::mutex> lock(_pauseMutex);
+    // Notify for resuming game
+    _cv.notify_one();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
 }

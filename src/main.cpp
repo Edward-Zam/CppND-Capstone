@@ -27,9 +27,13 @@ int main(int argc, char * args[])
 
     while ( !renderer.HasPlayerQuit() && !playfield.IsGameOver() )
     {
-        renderer.ClearScreen();
-        game.DrawAll();
-        renderer.UpdateScreen();
+        // Don't render if game is paused
+        if( !game.isPaused() )
+        {
+            renderer.ClearScreen();
+            game.DrawAll();
+            renderer.UpdateScreen();
+        }
 
         // Handle player movement:
         // Left arrow = left, Right arrow = Right, Down arrow = down, Up arrow = Rotate
@@ -70,28 +74,36 @@ int main(int argc, char * args[])
                 game.DropTetromino();
                 break;
 
+            case SDLK_p:
+                game.PauseGame();
+                break;
+
             case SDLK_ESCAPE:
                 // For now just exit. Future update will show end-screen
+                game.EndGame();
                 return 0;
                 break;
         }
 
-        // Automatic movement
-        unsigned long frameEnd = SDL_GetTicks();
-        frameDuration = frameEnd - frameStart;
-        if ( frameDuration > FRAME_UPDATE_TIME )
+        // Automatic movement (only when game is not paused)
+        if( !game.isPaused() )
         {
-            if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY + 1, game.CurrentTetrominoRotation) )
+            unsigned long frameEnd = SDL_GetTicks();
+            frameDuration = frameEnd - frameStart;
+            if ( frameDuration > FRAME_UPDATE_TIME )
             {
-                game.CurrentTetrominoPosY++;
+                if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY + 1, game.CurrentTetrominoRotation) )
+                {
+                    game.CurrentTetrominoPosY++;
+                }
+                else
+                {
+                    playfield.StoreTetromino(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation);
+                    playfield.DeleteCompletedLines();
+                    game.CreateTetromino();
+                }
+                frameStart = SDL_GetTicks();
             }
-            else
-            {
-                playfield.StoreTetromino(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation);
-                playfield.DeleteCompletedLines();
-                game.CreateTetromino();
-            }
-            frameStart = SDL_GetTicks();
         }
 
     }

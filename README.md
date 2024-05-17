@@ -63,4 +63,6 @@ Up Arrow: Rotate Tetromino
 
 Space: Drop Tetromino
 
+P: Pause/Unpause game
+
 ESC: Quit the program

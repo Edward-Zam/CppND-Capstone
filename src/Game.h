@@ -1,6 +1,10 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <condition_variable>
+#include <mutex>
+
+
 #include "Renderer.h"
 #include "Playfield.h"
 #include "Tetrominoes.h"
@@ -20,6 +24,10 @@ public:
     void CreateTetromino();
     void RotateTetromino();
     void DropTetromino();
+    bool isPaused(){return _isPaused;}
+    
+    void PauseGame();
+    void EndGame();
 
 private:
     Playfield *_playfield;
@@ -30,6 +38,9 @@ private:
     int _nextTetrominoPosX;
     int _nextTetrominoPosY;
     int _nextTetrominoRotation;
+    bool _isPaused = false;
+    std::mutex _pauseMutex;
+    std::condition_variable _cv;
 
     int GetRandomInt(const int min, const int max);
     void InitializeGame();
@@ -39,6 +50,8 @@ private:
     void DrawFuturePlacement();
     void DrawPlayfield();
     void DrawStoredTetrominoes();
+    void Resume();
+    void WaitTime();
 
 };
 
