@@ -42,36 +42,51 @@ int main(int argc, char * args[])
         switch (keyPressed)
         {
             case SDLK_LEFT:
-                if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX - 1, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation))
-                {
-                    game.CurrentTetrominoPosX--;
+                if( !game.isPaused() )
+                {   
+                    if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX - 1, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation))
+                    {
+                        game.CurrentTetrominoPosX--;
+                    }
                 }
                 break;
 
             case SDLK_RIGHT:
-                if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX + 1, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation))
+                if( !game.isPaused() )
                 {
-                    game.CurrentTetrominoPosX++;
+                    if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX + 1, game.CurrentTetrominoPosY, game.CurrentTetrominoRotation))
+                    {
+                        game.CurrentTetrominoPosX++;
+                    }
                 }
                 break;
 
             case SDLK_DOWN:
-                if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY + 1, game.CurrentTetrominoRotation))
+                if( !game.isPaused() )
                 {
-                    game.CurrentTetrominoPosY++;
+                    if ( playfield.IsLegalMove(game.CurrentTetromino, game.CurrentTetrominoPosX, game.CurrentTetrominoPosY + 1, game.CurrentTetrominoRotation))
+                    {
+                        game.CurrentTetrominoPosY++;
+                    }
                 }
                 break;
 
             case SDLK_UP:
-                game.RotateTetromino();
+                if( !game.isPaused() )
+                {
+                    game.RotateTetromino();
+                }
                 break;
 
             case SDLK_SPACE:
-                if (playfield.IsGameOver())
+                if( !game.isPaused() )
                 {
-                    break;
+                    if (playfield.IsGameOver())
+                    {
+                        break;
+                    }
+                    game.DropTetromino();
                 }
-                game.DropTetromino();
                 break;
 
             case SDLK_p:
