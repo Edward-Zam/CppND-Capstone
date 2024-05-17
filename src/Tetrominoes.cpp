@@ -267,17 +267,17 @@ Tetrominoes::~Tetrominoes()
 
 }
 
-int Tetrominoes::GetTetrominoType(const TetrominoType tetrominoType, const int idx, const int idy, const int rotation)
+int Tetrominoes::GetTetrominoType(const TetrominoType& tetrominoType, const int& idx, const int& idy, const int& rotation)
 {
     return tetrominoes[(int)tetrominoType][rotation][idx][idy];
 }
 
-int Tetrominoes::GetTetrominoInitialPositionX(const TetrominoType tetrominoType, const int rotation)
+int Tetrominoes::GetTetrominoInitialPositionX(const TetrominoType& tetrominoType)
 {
     return initialPosition[(int)tetrominoType][0];
 }
 
-int Tetrominoes::GetTetrominoInitialPositionY(const TetrominoType tetrominoType, const int rotation)
+int Tetrominoes::GetTetrominoInitialPositionY(const TetrominoType& tetrominoType)
 {
     return initialPosition[(int)tetrominoType][1];
 }

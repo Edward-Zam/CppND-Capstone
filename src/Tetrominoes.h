@@ -17,9 +17,9 @@ class Tetrominoes
     ~Tetrominoes();
 
     // Getters
-    int GetTetrominoType(const TetrominoType tetrominoType, const int idx, const int idy, const int rotation);
-    int GetTetrominoInitialPositionX(const TetrominoType tetrominoType, const int rotation);
-    int GetTetrominoInitialPositionY(const TetrominoType tetrominoType, const int rotation);
+    int GetTetrominoType(const TetrominoType& tetrominoType, const int& idx, const int& idy, const int& rotation);
+    int GetTetrominoInitialPositionX(const TetrominoType& tetrominoType);
+    int GetTetrominoInitialPositionY(const TetrominoType& tetrominoType);
 };
 
 #endif

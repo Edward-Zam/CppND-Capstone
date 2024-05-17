@@ -18,11 +18,11 @@ public:
     Playfield(Tetrominoes *tetrominoes);
     ~Playfield();
 
-    int GetPlayfieldPositionX(const int posX);
-    int GetPlayfieldPositionY(const int posY);
-    TetrominoType GetPlayfieldState(const int posX, const int posY);
-    bool IsLegalMove(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation);
-    void StoreTetromino(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation);
+    int GetPlayfieldPositionX(const int& posX);
+    int GetPlayfieldPositionY(const int& posY);
+    TetrominoType GetPlayfieldState(const int& posX, const int& posY);
+    bool IsLegalMove(const TetrominoType& tetrominoType, const int& posX, const int& posY, const int& rotation);
+    void StoreTetromino(const TetrominoType& tetrominoType, const int& posX, const int& posY, const int& rotation);
     void DeleteCompletedLines();
     bool IsGameOver();
 

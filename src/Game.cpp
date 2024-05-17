@@ -32,8 +32,8 @@ void Game::CreateTetromino()
 {
     CurrentTetromino = _nextTetromino;
     CurrentTetrominoRotation = _nextTetrominoRotation;
-    CurrentTetrominoPosX = _tetrominoes->GetTetrominoInitialPositionX(CurrentTetromino, CurrentTetrominoRotation) + (PLAYFIELD_COLUMNS / 2) -1;
-    CurrentTetrominoPosY = _tetrominoes->GetTetrominoInitialPositionY(CurrentTetromino, CurrentTetrominoRotation);
+    CurrentTetrominoPosX = _tetrominoes->GetTetrominoInitialPositionX(CurrentTetromino) + (PLAYFIELD_COLUMNS / 2) -1;
+    CurrentTetrominoPosY = _tetrominoes->GetTetrominoInitialPositionY(CurrentTetromino);
 
     _nextTetromino = (TetrominoType)GetRandomInt(I, Z);
 }

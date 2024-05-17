@@ -10,24 +10,24 @@ Playfield::~Playfield()
 {
 }
 
-int Playfield::GetPlayfieldPositionX(const int posX)
+int Playfield::GetPlayfieldPositionX(const int& posX)
 {
     return (posX * BLOCK_SIZE) + PLAYFIELD_SEPERATOR_MARGIN + PLAYFIELD_SEPERATOR_THICKNESS + 1;
 }
 
-int Playfield::GetPlayfieldPositionY(const int posY)
+int Playfield::GetPlayfieldPositionY(const int& posY)
 {
     return (posY * BLOCK_SIZE) + SCREEN_HEIGHT - (PLAYFIELD_ROWS * BLOCK_SIZE) + 1;
 }
 
-TetrominoType Playfield::GetPlayfieldState(const int posX, const int posY)
+TetrominoType Playfield::GetPlayfieldState(const int& posX, const int& posY)
 {
     return (TetrominoType)_playfield[posX][posY];
 }
 
 // We want to check each cell of the playfield and compare it with the corresponding 5x5 area of the board
 // against the board limits and stored tetrominoes
-bool Playfield::IsLegalMove(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation)
+bool Playfield::IsLegalMove(const TetrominoType& tetrominoType, const int& posX, const int& posY, const int& rotation)
 {
     int playfieldPosX = posX;
     int playfieldPosY = posY;
@@ -61,7 +61,7 @@ bool Playfield::IsLegalMove(const TetrominoType tetrominoType, const int posX, c
     return true;
 }
 
-void Playfield::StoreTetromino(const TetrominoType tetrominoType, const int posX, const int posY, const int rotation)
+void Playfield::StoreTetromino(const TetrominoType& tetrominoType, const int& posX, const int& posY, const int& rotation)
 {
     int playfieldPosX = posX;
     int playfieldPosY = posY;
